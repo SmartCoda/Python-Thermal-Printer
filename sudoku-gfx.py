@@ -43,6 +43,9 @@ def main():
     puzzles = [makepuzzle(solution([None] * 81))]
   for puzzle in puzzles:
     printboard(puzzle)           # Doesn't print, just modifies 'bg' image
+    ht = printer.defaultHeatTime * 2
+    if(ht > 255): ht = 255
+    printer.begin(ht) # Set temporary dark heat time
     printer.printImage(bg, True) # This does the printing
     printer.println("RATING:", ratepuzzle(puzzle, 4))
     if len(args) > 0:
@@ -52,6 +55,7 @@ def main():
       if answer is None: printer.println("NO SOLUTION")
       else: printer.print(printboard(answer))
   printer.feed(3)
+  printer.begin() # Reset default heat time
 
 def makepuzzle(board):
   puzzle = []; deduced = [None] * 81

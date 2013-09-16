@@ -39,8 +39,12 @@ def tap():
 # Called when button is held down.  Prints image, invokes shutdown process.
 def hold():
   GPIO.output(ledPin, GPIO.HIGH)
+  ht = printer.defaultHeatTime * 2
+  if(ht > 255): ht = 255
+  printer.begin(ht) # Set temporary dark heat time
   printer.printImage(Image.open('gfx/goodbye.png'), True)
   printer.feed(3)
+  printer.begin() # Reset default heat time
   subprocess.call("sync")
   subprocess.call(["shutdown", "-h", "now"])
   GPIO.output(ledPin, GPIO.LOW)
@@ -97,8 +101,16 @@ except:
 	exit(0)
 
 # Print greeting image
+# Because the hello/goodbye images are overall fairly light, we can
+# get away with using a darker heat time for these, then reset to the
+# default afterward.
+ht = printer.defaultHeatTime * 2
+if(ht > 255): ht = 255
+
+printer.begin(ht) # Set temporary dark heat time
 printer.printImage(Image.open('gfx/hello.png'), True)
 printer.feed(3)
+printer.begin() # Reset default heat time
 GPIO.output(ledPin, GPIO.LOW)
 
 # Poll initial button state and time
