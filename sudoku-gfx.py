@@ -43,7 +43,7 @@ def main():
     puzzles = [makepuzzle(solution([None] * 81))]
   for puzzle in puzzles:
     printboard(puzzle)           # Doesn't print, just modifies 'bg' image
-    ht = 60
+    ht = printer.defaultHeatTime + 15
     if(ht > 255): ht = 255
     printer.begin(ht) # Set temporary dark heat time
     printer.printImage(bg, True) # This does the printing
