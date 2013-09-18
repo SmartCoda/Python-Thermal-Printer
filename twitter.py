@@ -35,8 +35,22 @@ from Adafruit_Thermal import *
 # Configurable globals.  Edit to your needs. -------------------------------
 
 # Twitter application credentials -- see notes above -- DO NOT SHARE.
-consumer_key    = 'PUT_YOUR_CONSUMER_KEY_HERE'
-consumer_secret = 'PUT_YOUR_CONSUMER_SECRET_HERE'
+# Have both key and secret set to load from file, makes my life easier pushing to GitHub
+# Doesn't require the twitter-key & twitter-secret file; if you're not planning to share this file, just enter those details below
+try:
+    file_key = open('/home/pi/twitter-key')
+    consumer_key = file_key.readline()
+except:
+    consumer_key = 'PUT_YOUR_CONSUMER_KEY_HERE'
+else:
+    file_key.close()
+try:
+    file_secret = open('/home/pi/twitter-secret')
+    consumer_secret = file_secret.readline()
+except:
+    consumer_secret = 'PUT_YOUR_CONSUMER_SECRET_HERE'
+else:
+    file_secret.close()
 
 # queryString can be any valid Twitter API search string, including
 # boolean operators.  See http://dev.twitter.com/docs/using-search
