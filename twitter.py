@@ -39,14 +39,14 @@ from Adafruit_Thermal import *
 # Doesn't require the twitter-key & twitter-secret file; if you're not planning to share this file, just enter those details below
 try:
     file_key = open('/home/pi/twitter-key')
-    consumer_key = file_key.readline()
+    consumer_key = file_key.readline().rstrip('\n')
 except:
     consumer_key = 'PUT_YOUR_CONSUMER_KEY_HERE'
 else:
     file_key.close()
 try:
     file_secret = open('/home/pi/twitter-secret')
-    consumer_secret = file_secret.readline()
+    consumer_secret = file_secret.readline().rstrip('\n')
 except:
     consumer_secret = 'PUT_YOUR_CONSUMER_SECRET_HERE'
 else:
