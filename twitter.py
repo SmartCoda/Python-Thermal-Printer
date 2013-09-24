@@ -1,3 +1,4 @@
+
 #!/usr/bin/python
 
 # This is a Python port of Adafruit's "Gutenbird" sketch for Arduino.
@@ -35,8 +36,10 @@ from Adafruit_Thermal import *
 # Configurable globals.  Edit to your needs. -------------------------------
 
 # Twitter application credentials -- see notes above -- DO NOT SHARE.
-# Have both key and secret set to load from file, makes my life easier pushing to GitHub
-# Doesn't require the twitter-key & twitter-secret file; if you're not planning to share this file, just enter those details below
+# Have both key and secret set to load from file, makes my life easier
+# pushing to GitHub
+# Doesn't require the twitter-key & twitter-secret file; if you're not
+# planning to share this file, just enter those details below
 try:
     file_key = open('/home/pi/twitter-key')
     consumer_key = file_key.readline().rstrip('\n')
