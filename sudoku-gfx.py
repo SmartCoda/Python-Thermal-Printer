@@ -47,7 +47,7 @@ def main():
     if(ht > 255): ht = 255
     printer.begin(ht) # Set temporary dark heat time
     printer.printImage(bg, True) # This does the printing
-    printer.println("RATING:", ratepuzzle(puzzle, 4))
+    printer.println("RATING:", ratepuzzle(puzzle, 4), "      1 2 3 4 5 6 7 8 9")
     if len(args) > 0:
       printer.println()
       printer.println("SOLUTION:")
