@@ -60,7 +60,8 @@ else:
 # for options and syntax.  Funny characters do NOT need to be URL
 # encoded here -- urllib takes care of that.
 #queryString = 'from:Adafruit OR from:SmartTube'
-queryString = 'from:SmartTube OR from:SmartSouthWales'
+#queryString = 'from:SmartTube OR from:SmartSouthWales'
+queryString = 'from:SmartArduino'
 
 # Other globals.  You probably won't need to change these. -----------------
 
