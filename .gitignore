@@ -2,3 +2,7 @@
 # generated files
 #
 *.pyc
+#
+# temp files
+#
+*~
