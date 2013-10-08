@@ -85,21 +85,6 @@ GPIO.output(ledPin, GPIO.HIGH)
 # stalling during greeting.
 time.sleep(60)
 
-# Show IP address (if network is available)
-try:
-	s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-	s.connect(('8.8.8.8', 0))
-	printer.print('My IP address is ' + s.getsockname()[0])
-	printer.feed(3)
-except:
-	printer.boldOn()
-	printer.println('Network is unreachable.')
-	printer.boldOff()
-	printer.print('Connect display and keyboard\n'
-	  'for network troubleshooting.')
-	printer.feed(3)
-	exit(0)
-
 # Print greeting image
 # Because the hello/goodbye images are overall fairly light, we can
 # get away with using a darker heat time for these, then reset to the
@@ -111,6 +96,24 @@ printer.begin(ht) # Set temporary dark heat time
 printer.printImage(Image.open('gfx/hello.png'), True)
 printer.feed(3)
 printer.begin() # Reset default heat time
+
+# Show IP address (if network is available)
+try:
+	s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+	s.connect(('8.8.8.8', 0))
+	printer.justify('C')
+	printer.print('My IP address is ' + s.getsockname()[0])
+	printer.justify('L')
+	printer.feed(3)
+except:
+	printer.boldOn()
+	printer.println('Network is unreachable.')
+	printer.boldOff()
+	printer.print('Connect display and keyboard\n'
+	  'for network troubleshooting.')
+	printer.feed(3)
+	exit(0)
+
 GPIO.output(ledPin, GPIO.LOW)
 
 # Poll initial button state and time
