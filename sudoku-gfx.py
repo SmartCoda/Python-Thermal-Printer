@@ -47,10 +47,10 @@ def main():
     if(ht > 255): ht = 255
     printer.begin(ht) # Set temporary dark heat time
     printer.printImage(bg, True) # This does the printing
-    rating="RATING:" + ratepussle(puzzle, 4)
+    rating_lvl="RATING:" + str(ratepussle(puzzle, 4))
     scratchpad="1 2 3 4 5 6 7 8 9"
-    spaces_req=" "*(32-(len(rating)+len(scratchpad)))
-    rating_scratchpad=rating + spaces_req + scratchpad
+    spaces_req=" "*(32-(len(rating_lvl)+len(scratchpad)))
+    rating_scratchpad=rating_lvl + spaces_req + scratchpad
     printer.println(rating_scratchpad)
     if len(args) > 0:
       printer.println()
