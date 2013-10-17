@@ -1,4 +1,3 @@
-
 from __future__ import print_function
 import RPi.GPIO as GPIO
 import subprocess, time, Image, socket
@@ -14,18 +13,14 @@ ht = printer.defaultHeatTime * 2
 if(ht > 255): ht = 255
 
 printer.begin(ht) # Set temporary dark heat time
+printer.println("Colour")
+printer.printImage(Image.open('gfx/partlycloudy.gif'), True)
+printer.feed(3)
 printer.println("Greyscale")
 printer.printImage(Image.open('gfx/result.png'), True)
 printer.feed(3)
 printer.println("B&W")
 printer.printImage(Image.open('gfx/result.gif'), True)
 printer.feed(3)
-printer.inverseOn()
-printer.println("Greyscale")
-printer.printImage(Image.open('gfx/result.png'), True)
-printer.feed(3)
-printer.println("B&W")
-printer.printImage(Image.open('gfx/result.gif'), True)
-printer.feed(3)
-printer.inverseOff()
 printer.begin() # Reset default heat time
+
